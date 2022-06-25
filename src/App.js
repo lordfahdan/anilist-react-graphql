@@ -4,6 +4,7 @@ import client from './api/client'
 import './App.css'
 
 import Header from './layouts/Header'
+import Footer from './layouts/Footer'
 
 import List from './pages/List'
 import Detail from './pages/Detail'
@@ -12,12 +13,12 @@ import CollectionDetail from './pages/CollectionDetail'
 
 import { Container } from './styled'
 
-function App() {
+const App = () => {
 
   return (
     <ApolloProvider client={client} >
+      <Header />
       <Container>
-        <Header />
         <BrowserRouter>
           <Routes>
               <Route path="/list" element={<List />} />
@@ -27,6 +28,7 @@ function App() {
           </Routes>
         </BrowserRouter>
       </Container>
+      <Footer />
     </ApolloProvider>
   );
 }

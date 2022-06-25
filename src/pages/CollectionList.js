@@ -1,7 +1,9 @@
 import React from 'react'
 
-export default function CollectionList() {
+const CollectionList = () => {
   return (
     <div>CollectionList</div>
   )
 }
+
+export default CollectionList

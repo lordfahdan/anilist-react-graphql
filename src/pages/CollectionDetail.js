@@ -1,7 +1,9 @@
 import React from 'react'
 
-export default function CollectionDetail() {
+const CollectionDetail = () => {
   return (
     <div>CollectionDetail</div>
   )
 }
+
+export default CollectionDetail

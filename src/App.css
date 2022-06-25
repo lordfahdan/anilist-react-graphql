@@ -48,7 +48,19 @@ table {
 }
 
 
+/* start CSS */
+@import url('https://fonts.googleapis.com/css2?family=Titan+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,500;0,700;1,400;1,500;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dosis:wght@500;700&display=swap');
+
+
 * {
   box-sizing: border-box;
   clear: both;
+}
+
+body {
+	/* font-family: 'Titan One', cursive; */
+	font-family: 'Rubik', sans-serif;
+	/* font-family: 'Dosis', sans-serif; */
 }

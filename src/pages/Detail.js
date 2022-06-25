@@ -3,7 +3,7 @@ import { useQuery } from '@apollo/client'
 import { ANIME_QUERIES } from '../queries'
 import { useParams } from 'react-router-dom'
 
-export default function Detail() {
+const Detail = () => {
   
   let { id } = useParams();
   id = parseInt(id)
@@ -23,3 +23,5 @@ export default function Detail() {
     <div>{id}</div>
   )
 }
+
+export default Detail;

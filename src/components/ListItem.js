@@ -1,43 +1,49 @@
 /** @jsxImportSource @emotion/react */
 import React from 'react'
 import { css } from '@emotion/react'
-import { GridItem } from '../styled'
+import styled from '@emotion/styled'
+import LazyImage from '../components/LazyImage'
 
 const ListItem = (props) => {
 
   const { anime } = props
   
-  // const overlay = css`
-  //   position: absolute;
-  //   bottom: 0;
-  //   width: 100%;
-  //   padding: 10px;
-  //   padding-top: 20px;
-  //   margin-top: 10px;
-  //   font-size: 16px;
-  //   background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.6) 40%, #000000 100%);
+  const GridItem = styled('div')`
+    display: grid;
+    grid-template-rows: min-content auto;
+    padding: 4px;
+    border-radius: 6px;
+    background: linear-gradient(140deg, ${anime.coverImage.color} 0%, #ffffff 60%);
 
-  // `
+    figure.cover {
+      border-radius: 6px;
+      cursor: pointer;
+      display: inline-block;
+      height: 50vw;
+      overflow: hidden;
+      width: 100%;
+      position: relative
+    }
 
-  // const name = css`
-  //   color: #ffffff;
-  //   overflow: hidden;
-  //   cursor: pointer;
-  //   display: -webkit-box;
-  //   -webkit-line-clamp: 2;
-  //   -webkit-box-orient: vertical;
-  // `
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
 
-  // return (
-  //     <GridItem>
-  //       <a className="cover">
-  //         <img css={css`width: 100%;`} src={anime.coverImage.large} alt="" />
-  //         <div css={css`${overlay}`}>
-  //           <span css={css`${name}`}>{anime.title.romaji}</span>
-  //         </div>
-  //       </a>
-  //     </GridItem>
-  // )
+    @media (min-width: 576px) {
+      figure.cover {
+        height: 185px;
+      }
+    }
+
+    @media (min-width: 992px) {
+      figure.cover {
+        height: 265px;
+      }
+    }
+  `;
 
   const name = css`
     margin: 8px 0 4px;
@@ -46,6 +52,14 @@ const ListItem = (props) => {
     display: -webkit-box;
     -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
+    font-size: 10px;
+    color: #333;
+    @media (min-width: 576px) {}
+    @media (min-width: 768px) {
+      font-size: 16px
+    }
+    @media (min-width: 992px) {}
+    @media (min-width: 1200px) {}
   `
 
   const ratingPopular = css`
@@ -79,9 +93,9 @@ const ListItem = (props) => {
 
   return (
     <GridItem>
-      <a className="cover">
-        <img src={anime.coverImage.large} alt="" />
-      </a>
+      <figure className='cover'>
+        <LazyImage src={anime.coverImage.large} alt={anime.title.romaji} />
+      </figure>
       <span css={css`${name}`}>{anime.title.romaji}</span>
       <div css={css`${ratingPopular}`}>
         <div css={css`${rating}`}>

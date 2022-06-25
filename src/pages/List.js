@@ -2,18 +2,25 @@ import React from 'react'
 import { useQuery } from '@apollo/client'
 import { LIST_ANIME_QUERIES } from '../queries'
 import ListItem from '../components/ListItem'
-import { GridList } from '../styled'
+import { GridList, LoaderContainer } from '../styled'
+import PropagateLoader from "react-spinners/PropagateLoader"
 
-export default function List() {
+const List = () => {
 
   const { loading, error, data } = useQuery(LIST_ANIME_QUERIES, {
     variables: {
       page: 400,
-      perPage: 10
+      perPage: 16
     }
   });
 
-  if(loading) return <h1>Loading...</h1>
+  if(loading) return (
+    <>
+      <LoaderContainer>
+        <PropagateLoader size={30} color={"rgba(3,172,14, 0.7)"} />
+      </LoaderContainer>
+    </>
+  )
   if(error) return () => {console.log(error)}
   
   const { Page } = data
@@ -28,3 +35,5 @@ export default function List() {
     </GridList>
   )
 }
+
+export default List
