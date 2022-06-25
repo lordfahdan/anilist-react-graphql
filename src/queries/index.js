@@ -24,3 +24,19 @@ export const LIST_ANIME_QUERIES = gql`
     }
   }
 `
+
+export const ANIME_QUERIES = gql`
+query ($id: Int) {
+  Media(id: $id) {
+    id
+    title {
+      romaji
+    }
+    bannerImage
+    coverImage {
+      medium
+      color
+    }
+  }
+}
+`

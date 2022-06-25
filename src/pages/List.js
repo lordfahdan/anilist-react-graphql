@@ -1,7 +1,8 @@
 import React from 'react'
 import { useQuery } from '@apollo/client'
 import { LIST_ANIME_QUERIES } from '../queries'
-import ListItem from './ListItem'
+import ListItem from '../components/ListItem'
+import { GridList } from '../styled'
 
 export default function List() {
 
@@ -18,12 +19,12 @@ export default function List() {
   const { Page } = data
 
   return (
-    <>
+    <GridList>
       {
         Page.media.map(item => (
           <ListItem anime={item} key={item.id} />
         ))
       }
-    </>
+    </GridList>
   )
 }
