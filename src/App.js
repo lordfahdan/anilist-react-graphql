@@ -1,6 +1,9 @@
 import { ApolloProvider } from "@apollo/client";
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import client from './api/client'
+import './App.css'
+
+import Header from './layouts/Header'
 
 import List from './pages/List'
 import Detail from './pages/Detail'
@@ -14,6 +17,7 @@ function App() {
   return (
     <ApolloProvider client={client} >
       <Container>
+        <Header />
         <BrowserRouter>
           <Routes>
               <Route path="/list" element={<List />} />

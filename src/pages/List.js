@@ -8,7 +8,7 @@ export default function List() {
 
   const { loading, error, data } = useQuery(LIST_ANIME_QUERIES, {
     variables: {
-      page: 1,
+      page: 400,
       perPage: 10
     }
   });

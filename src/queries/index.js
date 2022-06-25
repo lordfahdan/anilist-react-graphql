@@ -17,9 +17,11 @@ export const LIST_ANIME_QUERIES = gql`
         }
         bannerImage
         coverImage {
-          medium
+          large
           color
         }
+        averageScore
+        popularity
       }
     }
   }
