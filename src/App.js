@@ -1,5 +1,6 @@
 import { ApolloProvider } from "@apollo/client";
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { CollectionContextProvider } from './context/CollectionContext'
 import client from './api/client'
 import './App.css'
 
@@ -16,20 +17,22 @@ import { Container } from './styled'
 const App = () => {
 
   return (
-    <ApolloProvider client={client} >
-      <BrowserRouter>
-        <Header />
-        <Container>
-            <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/anime/:id" element={<Detail />} />
-                <Route path="/collections" element={<CollectionList />} />
-                <Route path="/collections/:colletion_id" element={<CollectionDetail />} />
-            </Routes>
-        </Container>
-        <Footer />
-      </BrowserRouter>
-    </ApolloProvider>
+    <CollectionContextProvider>
+      <ApolloProvider client={client} >
+        <BrowserRouter>
+          <Header />
+          <Container>
+              <Routes>
+                  <Route path="/" element={<Home />} />
+                  <Route path="/anime/:id" element={<Detail />} />
+                  <Route path="/collections" element={<CollectionList />} />
+                  <Route path="/collections/:name" element={<CollectionDetail />} />
+              </Routes>
+          </Container>
+          <Footer />
+        </BrowserRouter>
+      </ApolloProvider>
+    </CollectionContextProvider>
   );
 }
 

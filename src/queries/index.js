@@ -38,10 +38,12 @@ query ($id: Int) {
     }
     bannerImage
     coverImage {
-      medium
+      large
       color
     }
     description
+    averageScore
+    popularity
   }
 }
 `

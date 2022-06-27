@@ -18,6 +18,7 @@ const ListItem = (props) => {
     grid-template-rows: min-content auto;
     padding: 4px;
     border-radius: 6px;
+    font-weight: 500;
     background: linear-gradient(140deg, ${anime.coverImage.color} 0%, transparent 60%);
 
     figure.cover {

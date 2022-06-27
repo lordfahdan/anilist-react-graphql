@@ -3,13 +3,12 @@ import ListItem from './ListItem'
 import { GridList} from '../styled'
 
 const List = ({ data }) => {
-  const { Page } = data
 
   return (
     <>
       <GridList>
         {
-          Page.media.map(item => (
+          data.map(item => (
             <ListItem anime={item} key={item.id} />
           ))
         }

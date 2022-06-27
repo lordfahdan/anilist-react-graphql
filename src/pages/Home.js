@@ -18,12 +18,14 @@ const Home = () => {
   )
   if(error) return () => {console.log(error)}
 
+  const { Page } = data
+
   return (
     <> 
-      <List data={data} />
+      <List data={Page.media} />
 
       <ButtonLoadMore onClick={() => {
-        const { currentPage, lastPage } = data.Page.pageInfo
+        const { currentPage, lastPage } = Page.pageInfo
 
         currentPage < lastPage && fetchMore({
           variables: {

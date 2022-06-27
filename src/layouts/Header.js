@@ -116,7 +116,12 @@ const Header = () => {
   const callbackScroll = () => {
     let top = window.scrollY
     let heightBanner = 400
-    headerRef.current.style.backgroundColor = `rgba(35, 35, 35, ${top / heightBanner})`
+    if(location.pathname !== '/'){
+      headerRef.current.style.backgroundColor = `rgba(35, 35, 35, 1)`
+    }
+    else {
+      headerRef.current.style.backgroundColor = `rgba(35, 35, 35, ${top / heightBanner})`
+    }
   }
 
   const burgerCallback = () => {
@@ -124,16 +129,15 @@ const Header = () => {
   }
 
   useEffect(() => {
-    if(location.pathname !== '/'){
-      headerRef.current.style.backgroundColor = 'rgba(35, 35, 35, 1)'
-    }
-    else {
+    callbackScroll()
+    window.onscroll = () => {
       callbackScroll()
-      window.onscroll = () => {
-        callbackScroll()
-      }
     }
-  }, [headerRef, location])
+
+    return () => {
+      window.onscroll = function(){};
+    }
+  })
 
   return (
     <>

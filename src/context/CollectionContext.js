@@ -1,33 +1,58 @@
-import React, { createContext, useReducer } from 'react'
+import React, { createContext, useReducer, useEffect } from 'react'
+import { ACTIONS, CollectionReducer } from './Reducer';
 
-export const ACTIONS = {
-  addCollection: 'add-collection',
-  removeCollection: 'remove-collection',
-  addCollectionItem: 'add-collection-item',
-  removeCollectionItem: 'remove-collection-item',
-}
+const INIT = localStorage.getItem('collections') 
+    ? JSON.parse(localStorage.getItem('collections')) 
+    : []
 
-export const CollectionsContext = createContext();
+export const CollectionsContext = createContext(INIT);
 
-export const CollectionReducer = (state, action) => {
-  switch(action.type) {
-    cas
+export const CollectionContextProvider = (props) => {
+  const [state, dispatch] = useReducer(CollectionReducer, INIT)
+  
+
+  useEffect(() => {
+    const sortedCollections = state.sort((a,b) => new Date(a.created_at) - new Date(b.created_at))
+    
+    localStorage.setItem('collections', JSON.stringify(sortedCollections))
+  }, [state])
+
+  const addCollection = (payload) => {
+    /*
+      - payload must be an Object: { name: '', data: [] }
+      - name must be unique
+    */
+    dispatch({ type: ACTIONS.addCollection, payload})
   }
-}
+  
+  
+  const removeCollection = (payload) => {
+    // payload must be the name of the collection
+    dispatch({ type: ACTIONS.removeCollection, payload});
+  }
 
-const CollectionContextProvider = (props) => {
+  const addCollectionItem = (payload) => {
+    // payload must be an Object: { name: <existing-collection>, data: <anime-item> }
+    dispatch({ type: ACTIONS.addCollectionItem, payload});
+  }
 
-  const collectionsAnime = localStorage.getItem('collections')? JSON.stringify(localStorage.getItem('collections')) : []
-
-  const [state, dispatch] = useReducer(collectionReducer, { collections: [] })
-
+  const getCollectionByName = (payload) => {
+    const result = state.filter(item => item.name === payload)[0]
+    return result
+  }
+  
 
 
   return (
-    <CollectionsContext.Provider>
-
+    <CollectionsContext.Provider
+      value={{
+        state,
+        addCollection,
+        removeCollection,
+        addCollectionItem,
+        getCollectionByName
+        }}>
+      {props.children}
     </CollectionsContext.Provider>
   )
 }
-
-export default CollectionContext
