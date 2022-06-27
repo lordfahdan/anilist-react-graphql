@@ -59,7 +59,8 @@ export const LoaderContainer = styled('div')`
 
 export const ButtonLoadMore = styled('button')`
   display: block;
-  margin: auto;
+  cursor: pointer;
+  margin: 20px auto 0;
   color: inherit;
   font: inherit;
   background: rgb(255, 0, 0, 1);
