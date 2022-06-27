@@ -14,6 +14,7 @@ export const LIST_ANIME_QUERIES = gql`
         id
         title {
           romaji
+          native
         }
         bannerImage
         coverImage {
@@ -33,12 +34,14 @@ query ($id: Int) {
     id
     title {
       romaji
+      native
     }
     bannerImage
     coverImage {
       medium
       color
     }
+    description
   }
 }
 `

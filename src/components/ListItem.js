@@ -3,17 +3,22 @@ import React from 'react'
 import { css } from '@emotion/react'
 import styled from '@emotion/styled'
 import LazyImage from '../components/LazyImage'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faStar } from '@fortawesome/free-solid-svg-icons'
+import { Link } from 'react-router-dom'
 
 const ListItem = (props) => {
 
   const { anime } = props
   
-  const GridItem = styled('div')`
+  const GridItem = styled(Link)`
+    text-decoration: none;
+    color: inherit;
     display: grid;
     grid-template-rows: min-content auto;
     padding: 4px;
     border-radius: 6px;
-    background: linear-gradient(140deg, ${anime.coverImage.color} 0%, #ffffff 60%);
+    background: linear-gradient(140deg, ${anime.coverImage.color} 0%, transparent 60%);
 
     figure.cover {
       border-radius: 6px;
@@ -53,7 +58,6 @@ const ListItem = (props) => {
     -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
     font-size: 10px;
-    color: #333;
     @media (min-width: 576px) {}
     @media (min-width: 768px) {
       font-size: 16px
@@ -92,24 +96,24 @@ const ListItem = (props) => {
   `
 
   return (
-    <GridItem>
+    <GridItem to={`/anime/${anime.id}`}>
       <figure className='cover'>
         <LazyImage src={anime.coverImage.large} alt={anime.title.romaji} />
       </figure>
-      <span css={css`${name}`}>{anime.title.romaji}</span>
+      <span css={css`${name}`}>{anime.title.romaji? anime.title.romaji : anime.title.native}</span>
       <div css={css`${ratingPopular}`}>
         <div css={css`${rating}`}>
-          <i className="fa-solid fa-star"></i>
-          <i className="fa-solid fa-star"></i>
-          <i className="fa-solid fa-star"></i>
-          <i className="fa-solid fa-star"></i>
-          <i className="fa-solid fa-star"></i>
+          <FontAwesomeIcon icon={faStar} />
+          <FontAwesomeIcon icon={faStar} />
+          <FontAwesomeIcon icon={faStar} />
+          <FontAwesomeIcon icon={faStar} />
+          <FontAwesomeIcon icon={faStar} />
           <div css={css`${rattingInner}`}>
-            <i className="fa-solid fa-star"></i>
-            <i className="fa-solid fa-star"></i>
-            <i className="fa-solid fa-star"></i>
-            <i className="fa-solid fa-star"></i>
-            <i className="fa-solid fa-star"></i>
+            <FontAwesomeIcon icon={faStar} />
+            <FontAwesomeIcon icon={faStar} />
+            <FontAwesomeIcon icon={faStar} />
+            <FontAwesomeIcon icon={faStar} />
+            <FontAwesomeIcon icon={faStar} />
           </div>
         </div>
         <div css={css`${popular}`}>

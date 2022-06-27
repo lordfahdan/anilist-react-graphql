@@ -1,6 +1,5 @@
 /** @jsxImportSource @emotion/react */
 import React, { useEffect, useRef, useState } from 'react'
-import { css } from '@emotion/react'
 
 const LazyImage = (props) => {
 
@@ -16,7 +15,7 @@ const LazyImage = (props) => {
   useEffect(() => {
     const options = {
       root: null,
-      rootMargin: "0px",
+      rootMargin: "160px",
       threshold: 1,
     }
     const element = imageElement.current

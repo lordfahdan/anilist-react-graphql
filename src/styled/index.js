@@ -10,7 +10,7 @@ import styled from '@emotion/styled'
 
 export const Container = styled('div')`
   width: 100%;
-  padding: 0 20px;
+  padding: 100px 20px;
   margin: auto;
   @media (min-width: 576px) { 
     
@@ -33,7 +33,6 @@ export const Container = styled('div')`
 `
 
 export const GridList = styled('div')`
-  padding: 48px 0;
   display: grid;
   justify-content: center;
   grid-template-columns: repeat(auto-fill, calc(50% - 20px));
@@ -55,4 +54,18 @@ export const LoaderContainer = styled('div')`
   justify-content: center;
   align-items: center;
   min-height: 70vh;
+  text-align: center;
+`
+
+export const ButtonLoadMore = styled('button')`
+  display: block;
+  margin: auto;
+  color: inherit;
+  font: inherit;
+  background: rgb(255, 0, 0, 1);
+  outline: unset;
+  border: unset;
+  text-align: center;
+  padding: 8px 32px;
+  border-radius: 20px;
 `

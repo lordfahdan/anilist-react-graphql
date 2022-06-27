@@ -6,7 +6,7 @@ import './App.css'
 import Header from './layouts/Header'
 import Footer from './layouts/Footer'
 
-import List from './pages/List'
+import Home from './pages/Home'
 import Detail from './pages/Detail'
 import CollectionList from './pages/CollectionList'
 import CollectionDetail from './pages/CollectionDetail'
@@ -17,18 +17,18 @@ const App = () => {
 
   return (
     <ApolloProvider client={client} >
-      <Header />
-      <Container>
-        <BrowserRouter>
-          <Routes>
-              <Route path="/list" element={<List />} />
-              <Route path="/list/:id" element={<Detail />} />
-              <Route path="/collections" element={<CollectionList />} />
-              <Route path="/collections/:colletion_id" element={<CollectionDetail />} />
-          </Routes>
-        </BrowserRouter>
-      </Container>
-      <Footer />
+      <BrowserRouter>
+        <Header />
+        <Container>
+            <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/anime/:id" element={<Detail />} />
+                <Route path="/collections" element={<CollectionList />} />
+                <Route path="/collections/:colletion_id" element={<CollectionDetail />} />
+            </Routes>
+        </Container>
+        <Footer />
+      </BrowserRouter>
     </ApolloProvider>
   );
 }
