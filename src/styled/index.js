@@ -233,6 +233,7 @@ export const SinopsisAnime = styled("div")`
   p {
     font-size: 10px;
     text-align: justify;
+    line-height: 16px;
   }
   @media (min-width: 768px) {
     margin-top: 18px;
@@ -242,7 +243,7 @@ export const SinopsisAnime = styled("div")`
     }
     p {
       font-size: 14px;
-      line-height: 20px;
+      line-height: 22px;
     }
   }
   @media (min-width: 992px) {
