@@ -9,8 +9,9 @@ import Footer from './layouts/Footer'
 
 import Home from './pages/Home'
 import Detail from './pages/Detail'
-import CollectionList from './pages/CollectionList'
+import Collection from './pages/Collection'
 import CollectionDetail from './pages/CollectionDetail'
+import Error404 from './pages/Error404'
 
 import { Container } from './styled'
 
@@ -25,8 +26,10 @@ const App = () => {
               <Routes>
                   <Route path="/" element={<Home />} />
                   <Route path="/anime/:id" element={<Detail />} />
-                  <Route path="/collections" element={<CollectionList />} />
+                  <Route path="/collections" element={<Collection />} />
                   <Route path="/collections/:name" element={<CollectionDetail />} />
+                  <Route path="*" element={<Error404 />} />
+                  <Route path="/*" element={<Error404 />} />
               </Routes>
           </Container>
           <Footer />

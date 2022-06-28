@@ -1,9 +1,8 @@
 /** @jsxImportSource @emotion/react */
 import React, { useEffect, useRef, useState } from 'react'
-import { css } from '@emotion/react'
-import styled from '@emotion/styled'
 import Banner from '../components/Banner'
-import Lord from '../assets/Lord.png'
+import styled from '@emotion/styled'
+import { css } from '@emotion/react'
 import { NavLink, useLocation, Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAlignLeft, faTimes } from '@fortawesome/free-solid-svg-icons'
@@ -41,20 +40,6 @@ const DivMenu = styled('div')`
   display: none;
   @media (min-width: 992px) {
     display: block;
-    margin-left: 60px;
-  }
-`
-
-const logoLord = css`
-  width: 46px;
-  height: 46px;
-  border-radius: 50%;
-  object-fit: cover;
-  object-position: center;
-  display: none;
-
-  @media (min-width: 992px) {
-    display: inline-block;
   }
 `
 
@@ -129,6 +114,12 @@ const Header = () => {
   }
 
   useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'auto'
+    });
+
     callbackScroll()
     window.onscroll = () => {
       callbackScroll()
@@ -145,14 +136,13 @@ const Header = () => {
         <DivFlex>
           <DivFlex>
             <DivLogo to={`/`}>MyAniList</DivLogo>
+          </DivFlex>
+
+          <div>
             <DivMenu>
               <LinkStyled to={`/`}>Home</LinkStyled>
               <LinkStyled to={`/collections`}>Collections</LinkStyled>
             </DivMenu>
-          </DivFlex>
-
-          <div>
-            <img css={css`${logoLord}`} src={Lord} alt="profile" />
             <FontAwesomeIcon
               css={css`${burgerIcon}`}
               icon={faAlignLeft}

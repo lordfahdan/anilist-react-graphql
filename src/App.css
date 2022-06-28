@@ -46,11 +46,16 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
+a {
+	color: inherit;
+	text-decoration: none
+}
 
 
 /* start CSS */
 @import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap');
+@import url(@sweetalert2/theme-dark/dark.css);
 
 
 
@@ -68,4 +73,59 @@ body {
 img {
 	width: 100%;
 	height: auto;
+}
+
+/* custom sweetalert2 */
+.swal2-container.swal2-center > .swal2-popup {
+	box-shadow: 0px 10px 6px 0px red;
+	background-color: #232323;
+}
+
+.swal2-styled.swal2-confirm {
+	font-weight: 700;
+	background-color: #009100;
+	transition: all 0.2s linear;
+	box-shadow: 0 0px 0px 0 red
+}
+.swal2-styled.swal2-confirm:hover {
+	transform: translateY(-4px);
+	box-shadow: 0 4px 4px 0 red;
+}
+.swal2-actions:not(.swal2-loading) .swal2-styled:hover {
+	background-image: unset;
+}
+
+.swal2-title {
+	font-size: 24px;
+}
+
+.swal2-input,
+.swal2-file,
+.swal2-textarea,
+.swal2-styled.swal2-confirm,
+.swal2-styled.swal2-cancel {
+	font-size: 12px;
+	box-shadow: 0px 0px 0 0px rgba(255, 0, 0, 0.4);
+	transition: box-shadow 0.2s linear;
+}
+.swal2-input:focus,
+.swal2-file:focus,
+.swal2-textarea:focus,
+.swal2-styled.swal2-confirm:focus {
+	box-shadow: 0px 0px 10px 4px rgba(255, 0, 0, 0.4);
+}
+
+@media(min-width: 992px) {
+	.swal2-title {
+		font-size: 1.875em;
+	}
+	.swal2-input,
+	.swal2-file,
+	.swal2-textarea {
+		font-size: 1.125em;
+	}
+	.swal2-styled.swal2-confirm,
+	.swal2-styled.swal2-cancel {
+		font-size: 1em;
+	}
 }

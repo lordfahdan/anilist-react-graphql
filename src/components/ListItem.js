@@ -19,16 +19,14 @@ const ListItem = (props) => {
     padding: 4px;
     border-radius: 6px;
     font-weight: 500;
-    background: linear-gradient(140deg, ${anime.coverImage.color} 0%, transparent 60%);
+    background: linear-gradient(140deg, ${anime.coverImage.color || "red"} 0%, transparent 60%);
 
     figure.cover {
       border-radius: 6px;
       cursor: pointer;
-      display: inline-block;
+      display: block;
       height: 50vw;
       overflow: hidden;
-      width: 100%;
-      position: relative
     }
 
     img {

@@ -23,6 +23,21 @@ export const LIST_ANIME_QUERIES = gql`
         }
         averageScore
         popularity
+        genres
+        status
+        episodes
+        duration
+        startDate {
+          year
+          month
+          day
+        }
+        endDate {
+          year
+          month
+          day
+        }
+        type
       }
     }
   }
@@ -44,6 +59,21 @@ query ($id: Int) {
     description
     averageScore
     popularity
+    genres
+    status
+    episodes
+    duration
+    startDate {
+      year
+      month
+      day
+    }
+    endDate {
+      year
+      month
+      day
+    }
+    type
   }
 }
 `

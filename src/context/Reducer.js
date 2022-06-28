@@ -19,10 +19,9 @@ export const CollectionReducer = (state, action) => {
       return [...other, { ...result, data: [...result.data, action.payload.data]}]
       
     case ACTIONS.removeCollectionItem:
-      return {
-        ...state,
-        data: state.data.filter(collection => collection.id !== action.payload)
-      }
+      const others = state.filter(item => item.name !== action.payload.name)
+      const results = state.filter(item => item.name === action.payload.name)[0]
+      return [...others, { ...results, data: results.data.filter(e => e.id !== action.payload.data.id)}]
     default:
       return state
   }
