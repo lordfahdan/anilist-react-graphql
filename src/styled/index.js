@@ -266,6 +266,7 @@ export const CardDetailAnime = styled("div")`
     padding: 10px 16px;
   }
   @media (min-width: 768px) {
+    margin-top: 40px;
     padding: 40px;
   }
 `;

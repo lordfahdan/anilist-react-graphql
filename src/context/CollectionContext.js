@@ -68,6 +68,19 @@ export const CollectionContextProvider = (props) => {
     }
   }
   
+  const getAllCollectionAddedStatus = (list, id) => {
+    let added = [];
+    list.forEach(r => {
+        if(r.data.some((e) => e.id === id)) {
+          added.push(list.name)
+        };
+    })
+
+    return {
+      added: added.length,
+    }
+  }
+  
 
 
   return (
@@ -79,7 +92,8 @@ export const CollectionContextProvider = (props) => {
         addCollectionItem,
         removeCollectionItem,
         getCollectionByName,
-        getCollectionStatusById
+        getCollectionStatusById,
+        getAllCollectionAddedStatus,
         }}>
       {props.children}
     </CollectionsContext.Provider>

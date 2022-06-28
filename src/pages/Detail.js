@@ -14,40 +14,75 @@ import { faBookmark } from '@fortawesome/free-regular-svg-icons'
 
 
 const Detail = () => {
-  const { state, addCollectionItem, getCollectionStatusById } = useContext(CollectionsContext);
+  const { state, addCollection, addCollectionItem, getCollectionStatusById, getAllCollectionAddedStatus } = useContext(CollectionsContext);
 
   const funcAddCollectionItem = async (data) => {
     let arrInput = ["<ul style='display:flex;align-items:flex-start;width:max-content;margin:auto;flex-direction: column;'>", "</ul>"]
     let indexSplice = 0;
-    state.forEach((e) => {
-      if(getCollectionStatusById(e, data.id).notAdded) {
-        indexSplice += 1;
-        arrInput.splice((indexSplice), 0, `<li><label for="id${e.name}"><input id="id${e.name}" name="collections" type="checkbox" value="${e.name}"> ${e.name}</label></li>`)
-      }
-    })
-    const { value: collections } = await Swal.fire({
-      title: 'Choose Collections',
-      html: arrInput.join(''),
-      focusConfirm: false,
-      preConfirm: () => {
-        let newArr = []
-        const allInput = document.querySelectorAll('input[name="collections"]:checked')
-        allInput.forEach((input) => {
-          newArr.push(input.value)
+    if(state.length > 0){
+      state.forEach((e) => {
+        if(getCollectionStatusById(e, data.id).notAdded) {
+          indexSplice += 1;
+          arrInput.splice((indexSplice), 0, `<li><label for="id${e.name}"><input id="id${e.name}" name="collections" type="checkbox" value="${e.name}"> ${e.name}</label></li>`)
+        }
+      })
+      const { value: collections } = await Swal.fire({
+        title: 'Choose Collections',
+        html: arrInput.join(''),
+        focusConfirm: false,
+        preConfirm: () => {
+          let newArr = []
+          const allInput = document.querySelectorAll('input[name="collections"]:checked')
+          allInput.forEach((input) => {
+            newArr.push(input.value)
+          })
+          return newArr;
+        }
+      })
+      if(collections && collections.length > 0){
+        collections.forEach(e => {
+          const obj = {
+            name: e,
+            data
+          }
+          addCollectionItem(obj)
         })
-        return newArr;
       }
-    })
-    if(collections && collections.length > 0){
-      console.log(collections)
-      collections.forEach(e => {
+    }
+    else {
+      const { value: collections } = await Swal.fire({
+        title: 'Add new Collection',
+        input: 'text',
+        inputValue: '',
+        confirmButtonText:
+          'Submit',
+        inputAutoTrim: true,
+        text: `Create Collection to save ${data.title.romaji}`,
+        showCancelButton: true,
+        inputValidator: (result) => {
+          if(/[^a-zA-Z0-9/]/.test(result) === true)
+            return "Collection Name doesn't have special Char"
+          if(result === '')
+            return "Collection Name cannot be empty"
+          if(state.filter(e => e.name.toLowerCase() === result.toLowerCase()).length > 0)
+            return "Collection Name already exist"
+        }
+      })
+      if(collections){
+        addCollection({
+          name: collections,
+          created_at: new Date(),
+          data: []
+        })
         const obj = {
-          name: e,
+          name: collections,
+          created_at: new Date(),
           data
         }
         addCollectionItem(obj)
-      })
+      }
     }
+    
   }
 
   let { id } = useParams();
@@ -137,10 +172,13 @@ const Detail = () => {
       <AddedTitle>Added Collection: </AddedTitle>
       <AddedCollection>
       {
-        state && state.map((collection) => (
-          getCollectionStatusById(collection, Media.id).added &&
-            <Link to={`/collections/${collection.name}`} key={`added${collection.name}`}>{collection.name}</Link>
-        ))
+        state.length > 0 ?
+          state && state.map((collection) => (
+            getCollectionStatusById(collection, Media.id).added &&
+              <Link to={`/collections/${collection.name}`} key={`added${collection.name}`}>{collection.name}</Link>
+          ))
+          :
+          (<span>-</span>)
       }
       </AddedCollection>
       <SinopsisAnime>
@@ -150,10 +188,30 @@ const Detail = () => {
           <p dangerouslySetInnerHTML={{__html: Media.description}}></p>
         }
       </SinopsisAnime>
-      <ButtonBookmark onClick={() => funcAddCollectionItem(Media)}v>
-        <FontAwesomeIcon icon={faBookmark} css={css`margin-right: 6px;`} />
-        <span>Add to Collection</span>
-      </ButtonBookmark>
+      {
+        state.length > 0 ? 
+          getAllCollectionAddedStatus(state, Media.id).added === state.length ?
+            (
+              <ButtonBookmark css={css`background: grey;`}>
+                <FontAwesomeIcon icon={faBookmark} css={css`margin-right: 6px;`} />
+                <span>Added to all Collection</span>
+              </ButtonBookmark>
+            )
+            :
+            (
+              <ButtonBookmark onClick={() => funcAddCollectionItem(Media)}>
+                <FontAwesomeIcon icon={faBookmark} css={css`margin-right: 6px;`} />
+                <span>Add to Collection</span>
+              </ButtonBookmark>
+            )
+          :
+          (
+            <ButtonBookmark onClick={() => funcAddCollectionItem(Media)}>
+              <FontAwesomeIcon icon={faBookmark} css={css`margin-right: 6px;`} />
+              <span>Add to Collection</span>
+            </ButtonBookmark>
+          )
+      }
     </CardDetailAnime>
   )
 }
