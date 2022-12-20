@@ -8,6 +8,10 @@
       "type": "image/x-icon"
     },
     {
+      "src": "windows11/Square44x44Logo.targetsize-30.png",
+      "sizes": "any"
+    },
+    {
       "src": "windows11/SmallTile.scale-100.png",
       "sizes": "71x71"
     },
