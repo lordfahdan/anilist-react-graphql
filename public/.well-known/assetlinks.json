@@ -1,6 +1,6 @@
 [{
-        "relation": ["delegate_permission/common.handle_all_urls"],
-        "target" : { "namespace": "android_app", "package_name": "app.vercel.anilist_react_graphql.twa",
-                     "sha256_cert_fingerprints": ["A2:B1:CF:DA:DF:68:DC:8A:3E:D3:14:1E:C7:A1:93:97:81:67:C6:4B:73:D9:96:F6:66:C6:AF:65:BB:46:3F:4D"] }
-      }
+      "relation": ["delegate_permission/common.handle_all_urls"],
+      "target" : { "namespace": "android_app", "package_name": "app.vercel.anilist_react_graphql.twa",
+                   "sha256_cert_fingerprints": ["3C:F0:72:1E:08:98:34:D8:F1:32:B0:7C:96:EF:68:DB:E7:7A:E9:C0:F3:F8:2D:5C:3D:31:A9:C0:E6:5C:17:F6"] }
+    }
 ]
