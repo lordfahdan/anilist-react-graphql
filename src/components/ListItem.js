@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import React from 'react'
+import { memo } from 'react'
 import { css } from '@emotion/react'
 import styled from '@emotion/styled'
 import LazyImage from '../components/LazyImage'
@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
 import { Link } from 'react-router-dom'
 
-const ListItem = (props) => {
+const ListItem = memo((props) => {
 
   const { anime } = props
   
@@ -122,6 +122,6 @@ const ListItem = (props) => {
       </div>
     </GridItem>
   )
-}
+})
 
 export default ListItem
