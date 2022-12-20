@@ -97,7 +97,8 @@ const ListItem = (props) => {
   return (
     <GridItem to={`/anime/${anime.id}`}>
       <figure className='cover'>
-        <LazyImage src={anime.coverImage.large} alt={anime.title.romaji} />
+//         <LazyImage src={anime.coverImage.large} alt={anime.title.romaji} />
+           <img src={anime.coverImage.large} alt={anime.title.romaji} />
       </figure>
       <span css={css`${name}`}>{anime.title.romaji? anime.title.romaji : anime.title.native}</span>
       <div css={css`${ratingPopular}`}>
