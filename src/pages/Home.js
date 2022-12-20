@@ -2,11 +2,15 @@ import React from 'react'
 import List from '../components/List'
 import RingLoader from "react-spinners/RingLoader"
 import { useAnimeList } from '../api/hooks'
-import { LoaderContainer, ButtonLoadMore } from '../styled'
+import { LoaderContainer, ButtonLoadMore, InputContainer } from '../styled'
+import Input from '../components/Input'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSearch } from '@fortawesome/free-solid-svg-icons'
+import { useState } from 'react'
 
 const Home = () => {
-
-  const { loading, error, data, fetchMore } = useAnimeList(1, 10);
+  const [search, setSearch] = useState('')
+  const { loading, error, data, fetchMore } = useAnimeList(1, 10, search? search : undefined);
 
   if(loading) return (
     <>
@@ -20,7 +24,11 @@ const Home = () => {
   const { Page } = data
 
   return (
-    <> 
+    <>
+      <InputContainer>
+        <Input placeholder="Search manga..." />
+        <button><FontAwesomeIcon icon={faSearch} /></button>
+      </InputContainer>
       <List data={Page.media} />
 
       <ButtonLoadMore onClick={() => {

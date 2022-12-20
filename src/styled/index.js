@@ -10,7 +10,7 @@ import styled from "@emotion/styled";
 
 export const Container = styled("div")`
   width: 100%;
-  padding: 100px 20px;
+  padding: 60px 20px;
   min-height: 100vh;
   margin: auto;
   @media (min-width: 768px) {
@@ -302,5 +302,54 @@ export const AddedCollection = styled('div')`
     border-radius: 50px;
     font-size: 10px;
     margin-right: 8px;
+  }
+`
+
+export const InputSearch = styled('input')`
+  transition: all 0.6s ease;
+  outline: 1px solid #ff0000;
+  border: none;
+  width: 100%;
+  padding: 16px 48px 16px 12px;
+  border-radius: 4px;
+  background: hsl(0deg, 0%, 4%);
+  color: #ff0000;
+  font-size:16px;
+  
+  ::selection {
+    color: black;
+    background: #ff0000;
+  }
+
+  :focus {
+    box-shadow: 0 5px 10px 2px #ff0000;
+  }
+  ::placeholder {
+    color: #880000;
+  }
+`
+
+export const InputContainer = styled('form')`
+  display: block;
+  margin-bottom: 32px;
+  position: sticky;
+  top: 80px;
+  z-index: 2;
+  > button {
+    position: absolute;
+    top: 50%;
+    right: 12px;
+    transform: translateY(-50%);
+    background: unset;
+    outline: none;
+    border: none;
+    color: #ffffff;
+    z-index: 1;
+    cursor: pointer;
+    font-size: 20px;
+  }
+
+  @media (max-width: 640px){
+    top: 60px;
   }
 `

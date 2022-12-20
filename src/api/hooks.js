@@ -1,12 +1,13 @@
 import { LIST_ANIME_QUERIES, ANIME_QUERIES } from '../queries';
 import { useQuery } from '@apollo/client';
 
-export const useAnimeList = (page, perPage) => {
+export const useAnimeList = (page, perPage, search) => {
 
   const {data, loading, error, fetchMore} = useQuery(LIST_ANIME_QUERIES, {
     variables: {
       page: page,
-      perPage: perPage
+      perPage: perPage,
+      search
     }
   });
 
