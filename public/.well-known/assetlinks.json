@@ -1,0 +1,6 @@
+[{
+        "relation": ["delegate_permission/common.handle_all_urls"],
+        "target" : { "namespace": "android_app", "package_name": "app.vercel.anilist_react_graphql.twa",
+                     "sha256_cert_fingerprints": ["5F:42:96:6D:BC:63:31:64:95:21:0B:7B:FA:7E:77:CF:19:7A:25:F5:F8:B8:61:55:14:6D:89:16:71:0E:83:C9"] }
+      }
+]
