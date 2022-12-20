@@ -4,7 +4,6 @@ import RingLoader from "react-spinners/RingLoader"
 import { useAnimeList } from '../api/hooks'
 import { LoaderContainer, ButtonLoadMore } from '../styled'
 
-
 const Home = () => {
 
   const { loading, error, data, fetchMore } = useAnimeList(1, 10);
