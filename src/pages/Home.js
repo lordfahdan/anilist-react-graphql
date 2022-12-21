@@ -1,60 +1,34 @@
-import React from 'react'
-import List from '../components/List'
-import RingLoader from "react-spinners/RingLoader"
-import { useAnimeList } from '../api/hooks'
-import { LoaderContainer, ButtonLoadMore, InputContainer } from '../styled'
-import Input from '../components/Input'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSearch } from '@fortawesome/free-solid-svg-icons'
-import { useState } from 'react'
+import { faSearch } from "@fortawesome/free-solid-svg-icons"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { useState } from "react"
+import AnimeList from "../components/AnimeList"
+import Input from "../components/Input"
+import { InputContainer } from "../styled"
 
 const Home = () => {
   const [search, setSearch] = useState('')
-  const { loading, error, data, fetchMore } = useAnimeList(1, 10, search? search : undefined);
-
-  if(loading) return (
-    <>
-      <LoaderContainer>
-        <RingLoader size={100} color={"rgb(255, 0, 0, 1)"} />
-      </LoaderContainer>
-    </>
-  )
-  if(error) return () => {console.log(error)}
-
-  const { Page } = data
+  const [searchSent, setSearchSent] = useState('')
+  
+  const funcSubmit = (e, value) => {
+    e.preventDefault()
+    setSearchSent(value)
+    window.scrollTo({
+      top: document.getElementById('list').getBoundingClientRect().top || 0, 
+      behavior: 'smooth'
+    });
+  }
 
   return (
     <>
-      <InputContainer>
-        <Input placeholder="Search manga..." />
+      <InputContainer onSubmit={(e) => funcSubmit(e, search)}>
+        <Input placeholder="Search manga..." value={search} onChange={(e) => setSearch(e.target.value)} />
         <button><FontAwesomeIcon icon={faSearch} /></button>
       </InputContainer>
-      <List data={Page.media} />
 
-      <ButtonLoadMore onClick={() => {
-        const { currentPage, lastPage } = Page.pageInfo
-
-        currentPage < lastPage && fetchMore({
-          variables: {
-            page: currentPage + 1,
-            perPage: 10,
-          },
-          updateQuery: (prevResult, { fetchMoreResult }) => {
-            const { media } = prevResult.Page
-            const { Page } = fetchMoreResult
-            Page.media = [
-              ...media,
-              ...Page.media
-            ];
-
-            return fetchMoreResult
-          }
-        })
-      }}>
-        Load More
-      </ButtonLoadMore>
+      <AnimeList search={searchSent} />
     </>
   )
+  
 }
 
 export default Home

@@ -10,12 +10,13 @@ import styled from "@emotion/styled";
 
 export const Container = styled("div")`
   width: 100%;
-  padding: 60px 20px;
+  padding: 100px 20px;
   min-height: 100vh;
   margin: auto;
   @media (min-width: 768px) {
     width: 748px;
     margin: auto;
+    padding: 70px 20px;
   }
 
   @media (min-width: 992px) {

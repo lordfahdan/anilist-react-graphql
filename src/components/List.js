@@ -5,7 +5,7 @@ import { GridList} from '../styled'
 const List = ({ data }) => {
 
   return (
-    <>
+    <section id='list'>
       <GridList>
         {
           data.map(item => (
@@ -14,7 +14,7 @@ const List = ({ data }) => {
         }
       </GridList>
 
-    </>
+    </section>
   )
 }
 

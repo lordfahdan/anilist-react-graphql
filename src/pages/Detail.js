@@ -95,6 +95,8 @@ const Detail = () => {
 
   const { Media } = data
 
+  console.log("MEDIA", Media)
+
   return (
     <CardDetailAnime>
       <DetailAnime>
@@ -130,27 +132,27 @@ const Detail = () => {
             <div className='descAnimeDetail'>
               <div>
                 <FontAwesomeIcon className='fontAwsome' icon={faSquare} />
-                Status : {Media.status}
+                Status : {Media.status || '-'}
               </div>
               <div>
                 <FontAwesomeIcon className='fontAwsome' icon={faSquare} />
-                Duration : {Media.duration}
+                Duration : {Media.duration || '-'}
               </div>
               <div>
                 <FontAwesomeIcon className='fontAwsome' icon={faSquare} />
-                Episodes : {Media.episodes}
+                Episodes : {Media.episodes || '-'}
               </div>
               <div>
                 <FontAwesomeIcon className='fontAwsome' icon={faSquare} />
-                Release Date : {`${Media.startDate.day}/${Media.startDate.month}/${Media.startDate.year}`}
+                Release Date : {`${Media.startDate.day || '-'}/${Media.startDate.month || '-'}/${Media.startDate.year || '-'}`}
               </div>
               <div>
                 <FontAwesomeIcon className='fontAwsome' icon={faSquare} />
-                Finish Date : {`${Media.endDate.day}/${Media.endDate.month}/${Media.endDate.year}`}
+                Finish Date : {`${Media.endDate.day || '-'}/${Media.endDate.month || '-'}/${Media.endDate.year || '-'}`}
               </div>
               <div>
                 <FontAwesomeIcon className='fontAwsome' icon={faSquare} />
-                Type : {Media.type}
+                Type : {Media.type || '-'}
               </div>
               <div>
                 <FontAwesomeIcon className='fontAwsome' icon={faSquare} />
