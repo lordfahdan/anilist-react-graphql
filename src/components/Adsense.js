@@ -8,7 +8,7 @@ const Adsense = () => {
     if (!isAdLoaded) {
       const script = document.createElement('script');
       script.src =
-        'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js';
+        'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9838366977027267';
       script.async = true;
       document.head.appendChild(script);
 
