@@ -1,95 +1,10 @@
 /** @jsxImportSource @emotion/react */
 import React, { useEffect, useRef, useState } from 'react'
-import Banner from '../components/Banner'
-import styled from '@emotion/styled'
 import { css } from '@emotion/react'
-import { NavLink, useLocation, Link } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAlignLeft, faTimes } from '@fortawesome/free-solid-svg-icons'
-
-
-
-const HeaderStyle = styled('header')`
-  position: fixed;
-  top: 0;
-  z-index: 2;
-  width: 100%;
-  padding: 12px 20px;
-  @media (min-width: 768px) {
-    padding: 14px 47px;
-  }
-`
-const DivFlex = styled('div')`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-`
-
-const DivLogo = styled(Link)`
-  text-decoration: none;
-  font-family: 'Lobster', cursive;
-  font-size: 30px;
-  color: rgb(255, 0, 0, 1);
-  @media (min-width: 768px) {
-    font-size: 40px;
-  }
-`
-
-
-const DivMenu = styled('div')`
-  display: none;
-  @media (min-width: 992px) {
-    display: block;
-  }
-`
-
-const LinkStyled = styled(NavLink)`
-  text-decoration: none;
-  font-size: 22px;
-  margin-left: 40px;
-  color: #aaa;
-  position: relative;
-  transition: color 0.4s ease-in-out;
-  &.active {
-    color: #fff
-  }
-  &:before {
-    content: "";
-    position: absolute;
-    top: 130%;
-    left: 0;
-    width: 100%;
-    transition: box-shadow 0.4s ease-in-out;
-  }
-  &.active:before {
-    box-shadow: 0px 0px 2px 2px red;
-  }
-`
-
-const burgerIcon = css`
-  display: inline;
-  font-size: 25px;
-  cursor: pointer;
-  @media (min-width: 992px) {
-    display: none;
-  }
-`
-
-const BurgerMenu = styled('div')`
-  position: fixed;
-  z-index: 3;
-  background: #232323;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  left: 100%;
-  transition: left 0.3s ease-out;
-  padding: 12px 20px;
-
-  &.active {
-    left: 0;
-  }
-`
+import { BurgerMenu, DivFlex, DivLogo, DivMenu, HeaderStyle, LinkStyled, burgerIcon } from '../styled'
 
 
 const Header = () => {
@@ -135,7 +50,7 @@ const Header = () => {
       <HeaderStyle ref={headerRef}>
         <DivFlex>
           <DivFlex>
-            <DivLogo to={`/`}>MyAniList</DivLogo>
+            <DivLogo to={`/`}>LordNime</DivLogo>
           </DivFlex>
 
           <div>
@@ -152,15 +67,13 @@ const Header = () => {
         </DivFlex>
       </HeaderStyle>
       
-      { location.pathname !== '/'? '' : (<Banner />) }
-
       <BurgerMenu className={menuBurger? 'active' : ''}>
         <DivFlex css={css`border-bottom: 1px solid #333333; padding-bottom: 16px;`}>
           <DivLogo
             to={`/`}
             onClick={() => setMenuBurger(false)}
             >
-              MyAniList
+              LordNime
             </DivLogo>
           <FontAwesomeIcon
             css={css`${burgerIcon}`}

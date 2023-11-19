@@ -1,36 +1,62 @@
-import { LIST_ANIME_QUERIES, ANIME_QUERIES } from '../queries';
+import {
+  SEARCH_LIST_QUERIES,
+  ANIME_QUERY,
+  SELECTION_LIST_QUERIES,
+  CHARACTER_LIST,
+} from '../queries';
 import { useQuery } from '@apollo/client';
 
-export const useAnimeList = (page, perPage, search) => {
-
-  const {data, loading, error, fetchMore} = useQuery(LIST_ANIME_QUERIES, {
+export const useSearchList = ({ page, perPage, search }) => {
+  return useQuery(SEARCH_LIST_QUERIES, {
     variables: {
       page: page,
       perPage: perPage,
-      search
-    }
+      search,
+      isAdult: localStorage.getItem('age_restrict') === '1' ? true : false,
+    },
   });
-
-  return {
-    data,
-    loading,
-    error,
-    fetchMore,
-  };
 };
 
-export const useAnimeDetail = (id) => {
-
-  const {data, loading, error} = useQuery(ANIME_QUERIES, {
+export const useAnimeDetail = ({ id }) => {
+  return useQuery(ANIME_QUERY, {
     variables: {
       id: id,
-    }
+      isAdult: localStorage.getItem('age_restrict') === '1' ? true : false,
+    },
   });
-
-  return {
-    data,
-    loading,
-    error
-  };
 };
 
+export const useSelectionList = ({
+  page = 1,
+  perPage = 6,
+  type = 'ANIME',
+  season,
+  seasonYear,
+  sort,
+}) => {
+  return useQuery(SELECTION_LIST_QUERIES, {
+    variables: {
+      page,
+      perPage,
+      isAdult: localStorage.getItem('age_restrict') === '1' ? true : false,
+      type,
+      season,
+      seasonYear,
+      sort,
+    },
+  });
+};
+
+export const useCharacterList = ({
+  page = 1,
+  perPage = 10,
+  sort = 'FAVOURITES_DESC',
+}) => {
+  return useQuery(CHARACTER_LIST, {
+    variables: {
+      page,
+      perPage,
+      sort,
+    },
+  });
+};

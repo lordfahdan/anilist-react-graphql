@@ -1,34 +1,25 @@
-import { faSearch } from "@fortawesome/free-solid-svg-icons"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { useState } from "react"
-import AnimeList from "../components/AnimeList"
-import Input from "../components/Input"
-import { InputContainer } from "../styled"
+import { Container } from '../styled';
+
+import Banner from '../components/Banner';
+import SelectionHome from '../components/SelectionHome';
+import AdsenseComponent from '../components/AdsenseComponent';
 
 const Home = () => {
-  const [search, setSearch] = useState('')
-  const [searchSent, setSearchSent] = useState('')
-  
-  const funcSubmit = (e, value) => {
-    e.preventDefault()
-    setSearchSent(value)
-    window.scrollTo({
-      top: document.getElementById('list').getBoundingClientRect().top || 0, 
-      behavior: 'smooth'
-    });
-  }
-
   return (
     <>
-      <InputContainer onSubmit={(e) => funcSubmit(e, search)}>
-        <Input placeholder="Search manga..." value={search} onChange={(e) => setSearch(e.target.value)} />
-        <button><FontAwesomeIcon icon={faSearch} /></button>
-      </InputContainer>
-
-      <AnimeList search={searchSent} />
+      <Banner />
+      <Container>
+        <SelectionHome title={'Popular This Season'} model={'season'} />
+        <SelectionHome title={'Trending Now'} model={'trending'} />
+        <AdsenseComponent
+          style={{ display: 'block' }}
+          data-ad-slot="7269559895"
+          data-ad-format="auto"
+          data-full-width-responsive="true"
+        />
+      </Container>
     </>
-  )
-  
-}
+  );
+};
 
-export default Home
+export default Home;

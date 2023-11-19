@@ -1,10 +1,11 @@
 /** @jsxImportSource @emotion/react */
+import { forwardRef } from 'react'
 import { InputSearch } from '../styled'
 
-const Input = (props) => {
+const Input = forwardRef((props, ref) => {
   return (
-    <InputSearch {...props}  />
+    <InputSearch ref={ref} {...props}  />
   )
-}
+})
 
 export default Input

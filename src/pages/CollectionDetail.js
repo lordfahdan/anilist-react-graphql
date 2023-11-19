@@ -2,7 +2,7 @@
 import React, { useContext } from 'react'
 import { useParams } from 'react-router-dom'
 import { CollectionsContext } from '../context/CollectionContext'
-import { GridList } from '../styled'
+import { Container, GridList } from '../styled'
 import { css } from '@emotion/react'
 import styled from '@emotion/styled'
 import ListItem from '../components/ListItem'
@@ -49,7 +49,7 @@ const CollectionDetail = () => {
   `
 
   return (
-    <>
+    <Container>
       <h4 css={css`margin: 10px 0 30px;font-size: 24px;font-weight: bold;`}>Collection {name}</h4>
       {
         data.length > 0 &&
@@ -70,7 +70,7 @@ const CollectionDetail = () => {
         data && data.length === 0 &&
         (<p css={css`display: flex; align-items: center; justify-content: center;height: 40vh; opacity: 0.5;`}>There's no Anime in Collection {name}</p>)
       }
-    </>
+    </Container>
   )
 }
 

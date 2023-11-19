@@ -6,6 +6,7 @@ import { faSquarePlus } from '@fortawesome/free-solid-svg-icons'
 import { css } from '@emotion/react'
 import Swal from 'sweetalert2/dist/sweetalert2.js'
 import List from '../components/CollectionList'
+import { Container } from '../styled'
 
 const CollectionList = () => {
   const { state, addCollection, removeCollection } = useContext(CollectionsContext)
@@ -65,11 +66,11 @@ const CollectionList = () => {
   }
 
   return (
-    <>
+    <Container>
       <h3 css={css`
           font-size: 24px;
           font-weight: bold;
-          margin: 10px 0 14px;
+          margin: 40px 0 14px;
       `}>My Collections</h3>
       <button
         css={css`
@@ -91,7 +92,7 @@ const CollectionList = () => {
         state={state}
         funcRemoveCollection={funcRemoveCollection}
         />
-    </>
+    </Container>
   )
 }
 

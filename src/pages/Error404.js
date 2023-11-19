@@ -1,8 +1,9 @@
 import React from 'react'
+import { Container } from '../styled'
 
 const error404 = () => {
   return (
-    <div>error 404</div>
+    <Container>error 404</Container>
   )
 }
 

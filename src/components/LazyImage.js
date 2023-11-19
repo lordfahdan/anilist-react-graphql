@@ -6,7 +6,7 @@ const LazyImage = (props) => {
   const [load, setLoad] = useState(false)
 
   useEffect(() => {
-    const randTime = Math.floor(Math.random() * 1500)
+    const randTime = Math.floor(Math.random() * 2000)
     setTimeout(() => {
       setLoad(true)
     }, randTime);
